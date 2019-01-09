@@ -11,6 +11,8 @@ import SceneKit
 import ARKit
 
 class ViewController: UIViewController, ARSCNViewDelegate {
+    
+    var player: AVPlayer?
 
     @IBOutlet var sceneView: ARSCNView!
     
@@ -22,12 +24,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        
-        // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-        
-        // Set the scene to the view
-        sceneView.scene = scene
+        sceneView.debugOptions = .showWorldOrigin
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +32,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        
+        guard let objectReference = ARReferenceObject.referenceObjects(inGroupNamed: "RecognitionObject", bundle: nil) else {
+            fatalError("sas")
+        }
+        configuration.detectionObjects = objectReference
 
         // Run the view's session
         sceneView.session.run(configuration)
@@ -49,27 +51,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     // MARK: - ARSCNViewDelegate
     
-/*
+
     // Override to create and configure nodes for anchors added to the view's session.
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
         let node = SCNNode()
-     
+        if let objectAnchor = anchor as? ARObjectAnchor {
+            node.addChildNode(addVideoToNode(anchor: objectAnchor))
+        }
         return node
     }
-*/
     
-    func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
+    func addVideoToNode(anchor: ARObjectAnchor) -> SCNNode {
+        let tvNode = SCNNode()
         
+        guard let videoFile = Bundle.main.url(forResource: "videoplayback", withExtension: "mp4") else {return tvNode}
+        player = AVPlayer(url: videoFile)
+        
+        let tvPlane = SCNPlane(width: CGFloat(anchor.referenceObject.extent.x * 1.6), height: CGFloat(anchor.referenceObject.extent.y * 0.9))
+        tvPlane.firstMaterial?.diffuse.contents = player
+        tvPlane.firstMaterial?.isDoubleSided = true
+        
+        tvNode.geometry = tvPlane
+        tvNode.position = SCNVector3(anchor.referenceObject.center.x, anchor.referenceObject.center.y + 0.2, anchor.referenceObject.center.z)
+        
+        playVideo()
+        return tvNode
     }
     
-    func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
-        
+    func playVideo() {
+        player?.seek(to: CMTime.zero)
+        player?.play()
+        player?.volume = 3
     }
-    
-    func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
-        
-    }
+
 }

@@ -13,6 +13,7 @@
 		495C05E921E6B3BD000CE304 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495C05E721E6B3BD000CE304 /* Main.storyboard */; };
 		495C05EB21E6B3BF000CE304 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 495C05EA21E6B3BF000CE304 /* Assets.xcassets */; };
 		495C05EE21E6B3BF000CE304 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 495C05EC21E6B3BF000CE304 /* LaunchScreen.storyboard */; };
+		495C05F621E6B622000CE304 /* videoplayback.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 495C05F521E6B622000CE304 /* videoplayback.mp4 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		495C05EA21E6B3BF000CE304 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		495C05ED21E6B3BF000CE304 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		495C05EF21E6B3BF000CE304 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		495C05F521E6B622000CE304 /* videoplayback.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = videoplayback.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		495C05E021E6B3BD000CE304 /* ObjectAR */ = {
 			isa = PBXGroup;
 			children = (
+				495C05F521E6B622000CE304 /* videoplayback.mp4 */,
 				495C05E121E6B3BD000CE304 /* AppDelegate.swift */,
 				495C05E321E6B3BD000CE304 /* art.scnassets */,
 				495C05E521E6B3BD000CE304 /* ViewController.swift */,
@@ -129,6 +132,7 @@
 				495C05EE21E6B3BF000CE304 /* LaunchScreen.storyboard in Resources */,
 				495C05EB21E6B3BF000CE304 /* Assets.xcassets in Resources */,
 				495C05E921E6B3BD000CE304 /* Main.storyboard in Resources */,
+				495C05F621E6B622000CE304 /* videoplayback.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,11 +293,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPQTL9HB22;
 				INFOPLIST_FILE = ObjectAR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aparc.ObjectAR;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aparc.ARKit-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -307,11 +312,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HPQTL9HB22;
 				INFOPLIST_FILE = ObjectAR/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.aparc.ObjectAR;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aparc.ARKit-Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
